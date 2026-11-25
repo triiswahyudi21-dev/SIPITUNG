@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SIPITUNG - SMPN 3 Besuki</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts Inter -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            },
+            accent: {
+              500: '#f97316',
+              600: '#ea580c',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 antialiased h-[100dvh] flex flex-col overflow-hidden">
+
+  <!-- TOP HEADER -->
+  <header class="bg-gradient-to-r from-brand-900 via-brand-800 to-brand-700 text-white shadow-md shrink-0 z-30">
+    <div class="max-w-7xl mx-auto px-3 sm:px-4 py-2 sm:py-2.5 flex items-center justify-between gap-2">
+      <div class="flex items-center space-x-2.5 sm:space-x-3 min-w-0">
+        <div class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-gradient-to-tr from-sky-400 to-indigo-400 flex items-center justify-center shadow border border-white/30 shrink-0">
+          <!-- Ikon Robot SIPITUNG -->
+          <svg viewBox="0 0 64 64" class="w-6 h-6 sm:w-7 sm:h-7" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="24" y="10" width="16" height="6" rx="3" fill="#F8FAFC"/>
+            <rect x="14" y="15" width="36" height="30" rx="12" fill="#F8FAFC"/>
+            <rect x="9" y="24" width="5" height="12" rx="2.5" fill="#2DD4BF"/>
+            <rect x="50" y="24" width="5" height="12" rx="2.5" fill="#2DD4BF"/>
+            <rect x="19" y="20" width="26" height="20" rx="8" fill="#0F172A"/>
+            <path d="M23 28C24 25.5 27 25.5 28 28" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M36 28C37 25.5 40 25.5 41 28" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M25 33C28 36 36 36 39 33" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="truncate">
+          <h1 class="font-extrabold text-sm sm:text-base md:text-lg tracking-tight leading-tight flex items-center gap-2">
+            SIPITUNG
+          </h1>
+          <p class="text-[10px] sm:text-[11px] text-brand-100 truncate">Menjelajah tanpa batas</p>
+        </div>
+      </div>
+
+      <!-- User Controls -->
+      <div id="userHeaderBadge" class="hidden flex items-center space-x-1.5 sm:space-x-3 shrink-0">
+        <div class="text-right bg-brand-950/40 px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl border border-brand-600/30 max-w-[120px] sm:max-w-[200px]">
+          <div id="badgeUserName" class="text-[11px] sm:text-xs font-bold text-white leading-tight truncate">Siswa</div>
+        </div>
+
+        <button onclick="logout()" title="Keluar" class="bg-white/10 hover:bg-rose-500 active:bg-rose-600 text-white p-2 sm:px-2.5 sm:py-1.5 rounded-xl text-xs font-semibold transition flex items-center justify-center">
+          <i class="fa-solid fa-right-from-bracket"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- SCREEN 1: LOGIN KHUSUS SISWA -->
+  <main id="screenLogin" class="flex-1 flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+    <div class="max-w-md w-full bg-white rounded-3xl shadow-xl border border-slate-200 overflow-hidden my-auto">
+      <div class="bg-gradient-to-br from-brand-800 to-brand-600 p-5 sm:p-6 text-white text-center">
+        <div class="w-14 h-14 sm:w-16 sm:h-16 bg-gradient-to-tr from-sky-400 to-indigo-400 rounded-full mx-auto flex items-center justify-center mb-2.5 shadow-lg border-2 border-white/40">
+          <svg viewBox="0 0 64 64" class="w-10 h-10 sm:w-12 sm:h-12" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="24" y="10" width="16" height="6" rx="3" fill="#F8FAFC"/>
+            <rect x="14" y="15" width="36" height="30" rx="12" fill="#F8FAFC"/>
+            <rect x="9" y="24" width="5" height="12" rx="2.5" fill="#2DD4BF"/>
+            <rect x="50" y="24" width="5" height="12" rx="2.5" fill="#2DD4BF"/>
+            <rect x="19" y="20" width="26" height="20" rx="8" fill="#0F172A"/>
+            <path d="M23 28C24 25.5 27 25.5 28 28" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M36 28C37 25.5 40 25.5 41 28" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M25 33C28 36 36 36 39 33" stroke="#38BDF8" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <span class="inline-block px-3 py-0.5 rounded-full bg-emerald-400/20 border border-emerald-300/40 text-emerald-200 text-[10px] font-bold tracking-wider uppercase mb-1">CHATBOT</span>
+        <h2 class="text-lg sm:text-xl font-extrabold">SIPITUNG</h2>
+        <p class="text-xs text-brand-100 mt-1">Menjelajah tanpa batas</p>
+      </div>
+
+      <div class="p-5 sm:p-6">
+        <!-- Form Siswa -->
+        <form id="formLoginSiswa" onsubmit="event.preventDefault(); loginSiswa();" class="space-y-4">
+          <div>
+            <label class="block text-xs font-bold text-slate-600 uppercase mb-1.5">Nama Lengkap Siswa</label>
+            <input type="text" id="loginNama" required placeholder="Masukkan nama lengkap..." class="w-full px-3.5 py-3 text-base sm:text-sm border border-slate-200 rounded-xl focus:ring-2 focus:ring-brand-500 focus:outline-none" />
+          </div>
+          <button type="submit" class="w-full py-3.5 sm:py-3 bg-gradient-to-r from-accent-500 to-accent-600 text-white font-bold rounded-xl hover:shadow-lg active:scale-[0.99] transition flex items-center justify-center space-x-2">
+            <span>Mulai Belajar IPS</span>
+            <i class="fa-solid fa-arrow-right text-sm"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- SCREEN 2: FULLSCREEN EMBED EDCAFE.AI -->
+  <section id="screenEdcafe" class="hidden flex-1 flex flex-col w-full h-full bg-white overflow-hidden">
+    <!-- Bar Informasi Ringkas (Responsif HP & Desktop) -->
+    <div class="bg-slate-50 border-b border-slate-200 px-3 sm:px-4 py-1.5 sm:py-2 flex items-center justify-between gap-2 text-xs shrink-0">
+      <div class="flex items-center gap-1.5 sm:gap-2 text-slate-700 min-w-0">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0"></span>
+        <span class="font-semibold truncate text-[11px] sm:text-xs">Chatbot SIPITUNG Aktif</span>
+      </div>
+      <div class="flex items-center gap-1.5 sm:gap-2 shrink-0">
+        <button onclick="reloadEdcafeFrame()" class="bg-white border border-slate-200 hover:bg-slate-100 active:bg-slate-200 text-slate-700 px-2 sm:px-2.5 py-1.5 sm:py-1 rounded-lg font-semibold transition text-[11px] sm:text-xs">
+          <i class="fa-solid fa-rotate-right sm:mr-1"></i> <span class="hidden sm:inline">Muat Ulang</span>
+        </button>
+        <button onclick="openCleanEdcafePopup()" class="bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white px-2.5 py-1.5 sm:py-1 rounded-lg font-semibold transition flex items-center gap-1 text-[11px] sm:text-xs">
+          <span>Layar Penuh</span>
+          <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Banner Pemberitahuan (Disembunyikan otomatis di layar HP kecil agar ruang chat luas) -->
+    <div id="edcafeNoticeBanner" class="hidden sm:flex bg-amber-50 border-b border-amber-200 px-4 py-1.5 items-center justify-between text-[11px] text-amber-800 shrink-0">
+      <span>
+        <i class="fa-solid fa-circle-info mr-1 text-amber-600"></i>
+        Tips: Jika kolom ketik chat SIPITUNG terpotong atau riwayat lama masih tampil di dalam bingkai, klik <b>Layar Penuh</b> atau ikon <b>+ (New Chat)</b> di pojok atas kotak chat.
+      </span>
+      <button onclick="document.getElementById('edcafeNoticeBanner').classList.add('hidden')" class="text-amber-700 hover:text-amber-950 font-bold px-1.5">✕</button>
+    </div>
+
+    <!-- Container Utama: Menu Kiri Atas (New Chat & Refresh Chat) + Embed SIPITUNG -->
+    <div class="flex-1 w-full bg-slate-100 p-1.5 sm:p-4 flex flex-col md:flex-row items-stretch md:items-start justify-center gap-1.5 sm:gap-3 overflow-hidden">
+      
+      <!-- MENU DI SEBELAH KIRI ATAS CHAT -->
+      <aside class="w-full md:w-52 bg-white rounded-xl sm:rounded-2xl shadow-sm sm:shadow-md border border-slate-200 flex flex-col shrink-0 overflow-hidden">
+        <div class="p-1.5 sm:p-3 bg-slate-50 flex flex-row md:flex-col items-stretch gap-1.5 sm:gap-2">
+          <button onclick="startNewChatSession()" class="flex-1 bg-brand-600 hover:bg-brand-700 active:bg-brand-800 text-white text-xs font-bold py-2 sm:py-2.5 px-3 rounded-lg sm:rounded-xl shadow-sm transition flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-plus"></i>
+            <span>New Chat</span>
+          </button>
+          <button onclick="clearChatSession()" title="Bersihkan & Refresh Chat" class="flex-1 bg-amber-50 hover:bg-amber-500 active:bg-amber-600 text-amber-700 hover:text-white border border-amber-200 hover:border-amber-500 text-xs font-bold py-2 sm:py-2.5 px-3 rounded-lg sm:rounded-xl transition flex items-center justify-center gap-1.5">
+            <i class="fa-solid fa-arrows-rotate"></i>
+            <span>Refresh Chat</span>
+          </button>
+        </div>
+      </aside>
+
+      <!-- Bingkai Utama Embed SIPITUNG (Memenuhi sisa layar di HP agar nyaman mengetik & membaca) -->
+      <div id="edcafeFrameWrapper" class="w-full max-w-2xl flex-1 h-full min-h-0 md:max-h-[580px] bg-white rounded-xl sm:rounded-2xl shadow-md sm:shadow-lg border border-slate-200 overflow-hidden relative flex flex-col">
+        <iframe id="edcafeIframe" src="https://app.edcafe.ai/join/WsLF0YpxJAr-0xZTaxGyV_8VJymRtNZSXTTwSmtSKiBHpgd2f8lnLTxXfDD9F8y7" title="SIPITUNG" allow="microphone" style="border: none; width: 100%; height: 100%;"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toastNotification" class="hidden fixed bottom-3 left-3 right-3 sm:left-auto sm:bottom-5 sm:right-5 sm:max-w-sm bg-slate-900 text-white px-3.5 py-2.5 sm:px-4 sm:py-3 rounded-xl sm:rounded-2xl shadow-xl z-50 flex items-center space-x-2.5 text-xs font-medium border border-slate-700">
+    <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400 text-base shrink-0"></i>
+    <span id="toastMessage" class="leading-snug">Berhasil</span>
+  </div>
+
+  <script>
+    // =========================================================================
+    // KONFIGURASI PERMANEN EMBED SIPITUNG (TIDAK AKAN BERUBAH DI VERCEL)
+    // =========================================================================
+    const PERMANENT_EDCAFE_URL = 'https://app.edcafe.ai/join/WsLF0YpxJAr-0xZTaxGyV_8VJymRtNZSXTTwSmtSKiBHpgd2f8lnLTxXfDD9F8y7';
+
+    let currentUser = { nama: '' };
+    let frameRenderCount = 0;
+
+    async function startNewChatSession() {
+      await wipeBrowserStorage();
+      applyEmbedToScreen(true);
+      showToast('Sesi New Chat baru dibuka! Silakan mulai bertanya.', 'success');
+    }
+
+    async function wipeBrowserStorage() {
+      try {
+        localStorage.clear();
+        sessionStorage.clear();
+        document.cookie.split(';').forEach(function(c) {
+          document.cookie = c.replace(/^ +/, '').replace(/=.*/, '=;expires=' + new Date().toUTCString() + ';path=/');
+        });
+        if ('caches' in window) {
+          const cacheNames = await caches.keys();
+          await Promise.all(cacheNames.map(name => caches.delete(name)));
+        }
+        if (window.indexedDB && indexedDB.databases) {
+          const dbs = await indexedDB.databases();
+          dbs.forEach(db => {
+            if (db.name) indexedDB.deleteDatabase(db.name);
+          });
+        }
+      } catch (err) {
+        console.warn('Pembersihan storage parsial:', err);
+      }
+    }
+
+    function applyEmbedToScreen(forceClean = false) {
+      frameRenderCount++;
+      const wrapper = document.getElementById('edcafeFrameWrapper');
+
+      const oldIframe = document.getElementById('edcafeIframe');
+      if (oldIframe) {
+        try {
+          oldIframe.contentWindow?.postMessage({ type: 'CLEAR_CHAT', action: 'reset' }, '*');
+          oldIframe.src = 'about:blank';
+        } catch (e) {}
+        oldIframe.remove();
+      }
+
+      wrapper.innerHTML = `
+        <div class="w-full h-full flex flex-col items-center justify-center text-slate-500 text-xs gap-2.5 p-6 text-center">
+          <div class="w-11 h-11 rounded-2xl bg-brand-50 text-brand-600 flex items-center justify-center shadow-inner">
+            <i class="fa-solid fa-sparkles text-lg animate-pulse"></i>
+          </div>
+          <span class="font-semibold text-slate-700">Menyiapkan Ruang Chat SIPITUNG Bersih...</span>
+          <span class="text-[11px] text-slate-400">Menghubungkan ke SIPITUNG SMPN 3 Besuki</span>
+        </div>
+      `;
+
+      setTimeout(() => {
+        wrapper.innerHTML = '';
+        const iframe = document.createElement('iframe');
+        iframe.id = 'edcafeIframe';
+        iframe.name = `sipitung_clean_${frameRenderCount}_${Date.now()}`;
+        iframe.referrerPolicy = 'no-referrer';
+        iframe.src = PERMANENT_EDCAFE_URL;
+        iframe.title = 'SIPITUNG';
+        iframe.setAttribute('allow', 'microphone');
+        iframe.setAttribute('style', 'border: none; width: 100%; height: 100%;');
+        wrapper.appendChild(iframe);
+      }, forceClean ? 350 : 150);
+    }
+
+    function openCleanEdcafePopup() {
+      window.open(PERMANENT_EDCAFE_URL, '_blank', 'noopener,noreferrer');
+    }
+
+    async function clearChatSession() {
+      await wipeBrowserStorage();
+      applyEmbedToScreen(true);
+      showToast('Chat dibersihkan & di-refresh! Klik ikon + di dalam SIPITUNG jika sesi akun masih tampil.', 'success');
+    }
+
+    function reloadEdcafeFrame() {
+      applyEmbedToScreen(false);
+      showToast('Memuat ulang tampilan belajar SIPITUNG...', 'info');
+    }
+
+    async function loginSiswa() {
+      const nama = document.getElementById('loginNama').value.trim();
+      if (!nama) return;
+
+      await wipeBrowserStorage();
+
+      currentUser = { nama };
+      enterEdcafeWorkspace();
+    }
+
+    function enterEdcafeWorkspace() {
+      document.getElementById('badgeUserName').innerText = currentUser.nama;
+      document.getElementById('userHeaderBadge').classList.remove('hidden');
+
+      document.getElementById('screenLogin').classList.add('hidden');
+      document.getElementById('screenEdcafe').classList.remove('hidden');
+
+      applyEmbedToScreen();
+    }
+
+    async function logout() {
+      await wipeBrowserStorage();
+
+      currentUser = { nama: '' };
+      document.getElementById('loginNama').value = '';
+      document.getElementById('edcafeFrameWrapper').innerHTML = '';
+      document.getElementById('userHeaderBadge').classList.add('hidden');
+      document.getElementById('screenEdcafe').classList.add('hidden');
+      document.getElementById('screenLogin').classList.remove('hidden');
+      showToast('Sesi ditutup & chat dibersihkan.', 'info');
+    }
+
+    let toastTimer = null;
+    function showToast(msg, type = 'info') {
+      const toast = document.getElementById('toastNotification');
+      const icon = document.getElementById('toastIcon');
+      const text = document.getElementById('toastMessage');
+
+      text.innerText = msg;
+      icon.className = type === 'error'
+        ? 'fa-solid fa-circle-exclamation text-rose-400 text-base shrink-0'
+        : 'fa-solid fa-circle-check text-emerald-400 text-base shrink-0';
+
+      toast.classList.remove('hidden');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add('hidden'), 3500);
+    }
+  </script>
+</body>
+</html>
